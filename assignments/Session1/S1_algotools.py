@@ -89,7 +89,8 @@ def reverse_table(table):
         table[posfirst] = val_last
         table[poslast] = val_first
     return table
-    
+
+"""
 # test with odd list
 tab = [1, 2, 3, 4, 5, 6, 7]
 newList = reverse_table(tab)
@@ -100,6 +101,7 @@ print(newList)
 tab = [1, 2, 3, 4, 5, 6]
 newList = reverse_table(tab)
 print(newList)
+"""
 
 # matrix processing library
 import numpy
@@ -141,9 +143,11 @@ def roi_bbox(image):
     bbox_coords[3] = [max_y,max_x]
     return bbox_coords
 
+"""
 size_rows = 7
 size_cols = 7
 myMat = numpy.zeros([size_rows, size_cols])
+
 
 # filling something in the matrix
 #for row in range(1,5):
@@ -156,3 +160,4 @@ print(myMat)
 
 result = roi_bbox(myMat)
 print result
+"""
