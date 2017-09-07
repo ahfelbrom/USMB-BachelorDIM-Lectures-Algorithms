@@ -161,3 +161,27 @@ print(myMat)
 result = roi_bbox(myMat)
 print result
 """
+
+# import random functions
+import random
+
+def random_fill_sparse(table, vfill):
+    ##
+    # function used to fill a numpy array randomly 
+    # @param a 2D matrix to be scanned
+    # @param the number of cells to be filled
+    # output the filled matrix
+    for i in range(vfill):
+        randx = random.randint(0,table.shape[0] - 1)
+        randy = random.randint(0, table.shape[1] - 1)
+        while table[randx, randy] == 'X':
+            randx = random.randint(0,table.shape[0] - 1)
+            randy = random.randint(0, table.shape[1] - 1)
+        table[randx, randy] = 'X'
+    return table
+"""
+size = 5
+myRandMat = numpy.zeros([size, size], dtype=str)
+vfill = 10
+print random_fill_sparse(myRandMat, vfill)
+"""
