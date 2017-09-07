@@ -21,7 +21,7 @@ myBuggyList = [1, 'a', "Hi"]
 
 # operators
 b = a + 2
-myList_sum = myList+myList2 
+myList_sum = myList+myList2
 """
 
 def average_above_zero(tableau):
@@ -46,3 +46,24 @@ result = average_above_zero(tab)
 message = "The average of positives samples of {list_value} is {res}".format(list_value = tab,res = result)
 print(message)
 """
+
+def max_value(table):
+    ##
+    # basic fnction able to return the max value of a list
+    # @param table : the input list to be scanned
+    # @throws an exception (ValueError) on an empty list
+
+    # first check if provised list is not empty
+    if len(table) ==0:
+        raise ValueError('provised list is empty')
+    # init max_value
+    max_value = table[0]
+    # compute to find the max value
+    for item in table:
+        if max_value < item:
+            max_value = item
+    return max_value
+    
+tab = [-1, 0, 1, 2, 7, 3, 4]
+result = max_value(tab)
+print(result)
