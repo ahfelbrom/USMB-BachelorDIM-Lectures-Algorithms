@@ -185,3 +185,21 @@ myRandMat = numpy.zeros([size, size], dtype=str)
 vfill = 10
 print random_fill_sparse(myRandMat, vfill)
 """
+
+def remove_whitepspace(string):
+    length = len(string)
+    i = 0
+    while i < length:
+        if string[i] == " ":
+            string = string[0:i] + string[i+1:len(string)]
+            length -= 1
+        i+= 1 
+    return string
+
+"""
+string = "Hello world"
+print string + " => " + remove_whitepspace(string)
+
+string = " Hello world "
+print string + " => " + remove_whitepspace(string)
+"""
