@@ -21,7 +21,7 @@ myBuggyList = [1, 'a', "Hi"]
 
 # operators
 b = a + 2
-myList_sum = myList+myList2
+myList_sum = myList+myList2 
 """
 
 def average_above_zero(tableau):
