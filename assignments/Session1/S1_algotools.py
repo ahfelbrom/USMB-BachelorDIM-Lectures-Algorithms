@@ -63,7 +63,8 @@ def max_value(table):
         if max_value < item:
             max_value = item
     return max_value
-    
+""" 
 tab = [-1, 0, 1, 2, 7, 3, 4]
 result = max_value(tab)
 print(result)
+"""
