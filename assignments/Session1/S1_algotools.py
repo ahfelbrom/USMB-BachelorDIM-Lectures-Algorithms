@@ -108,24 +108,6 @@ def roi_bbox(image):
     bbox_coords[3] = [max_y,max_x]
     return bbox_coords
 
-"""
-size_rows = 7
-size_cols = 7
-myMat = numpy.zeros([size_rows, size_cols])
-
-
-# filling something in the matrix
-#for row in range(1,5):
-#    for col in range(2,4):
-#        myMat[row,col] = 1
-
-# better way to fill the matrix
-myMat[1:5,2:4] = numpy.ones([4,2])
-print(myMat)
-
-result = roi_bbox(myMat)
-print result
-"""
 
 # import random functions
 import random
