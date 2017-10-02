@@ -55,3 +55,12 @@ def test_reverse_table_even_list():
     """
     tab = [1, 2, 3, 4, 5, 6]
     assert algotools.reverse_table(tab) == [6, 5, 4, 3, 2, 1]
+    
+import numpy
+
+def test_roi_bbox_functionnal():
+    size_rows = 7
+    size_cols = 7
+    myMat = numpy.zeros([size_rows, size_cols])    
+    myMat[1:5,2:4] = numpy.ones([4,2])
+    assert numpy.alltrue(algotools.roi_bbox(myMat) == [[1, 2],[1, 3], [4, 2], [4, 3]])
