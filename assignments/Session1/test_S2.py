@@ -41,3 +41,17 @@ def test_max_value_negative_values():
     """
     tab = [-1, -10, -1, -2, -7, -3, -4]
     assert algotools.max_value(tab) == (-1,0)
+    
+def test_reverse_table_odd_list():
+    """function testing the reversion of a table list
+    with an odd list
+    """
+    tab = [1, 2, 3, 4, 5, 6, 7]
+    assert algotools.reverse_table(tab) == [7, 6, 5, 4, 3, 2, 1]
+    
+def test_reverse_table_even_list():
+    """function testing the reversion of a table list
+    with an even list
+    """
+    tab = [1, 2, 3, 4, 5, 6]
+    assert algotools.reverse_table(tab) == [6, 5, 4, 3, 2, 1]

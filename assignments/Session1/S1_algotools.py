@@ -54,7 +54,7 @@ def reverse_table(table):
     # basic fnction able to return the list scaned reversed without using another list
     # @param table : the input list to be scanned
     poslast = len(table)
-    for i in range(len(table)/2):
+    for i in range(int(len(table)/2)):
         # take the position of the list symmetrically from the middle
         posfirst = i
         poslast = poslast - 1
@@ -67,19 +67,6 @@ def reverse_table(table):
         table[posfirst] = val_last
         table[poslast] = val_first
     return table
-
-"""
-# test with odd list
-tab = [1, 2, 3, 4, 5, 6, 7]
-newList = reverse_table(tab)
-print(newList)
-
-
-# test with even list
-tab = [1, 2, 3, 4, 5, 6]
-newList = reverse_table(tab)
-print(newList)
-"""
 
 # matrix processing library
 import numpy
