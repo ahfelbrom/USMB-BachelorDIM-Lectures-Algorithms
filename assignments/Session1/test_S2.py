@@ -20,3 +20,24 @@ def test_average_above_zero_all_under_or_equal_zero():
     """
     tab = [-1, -5, 0, -2, -7, -3, -4]
     assert algotools.average_above_zero(tab) == 0.0
+    
+def test_max_value_positive_values():
+    """function testing the finding if the maximal value
+    for all values positives
+    """
+    tab = [1, 0, 1, 2, 7, 3, 4]
+    assert algotools.max_value(tab) == (7,4)
+
+def test_max_value_max_zero():
+    """function testing the finding if the maximal value
+    for zero max value
+    """
+    tab = [-1, 0, -1, -2, -7, -3, -4]
+    assert algotools.max_value(tab) == (0,1)
+
+def test_max_value_negative_values():
+    """function testing the finding if the maximal value
+    for all values positives
+    """
+    tab = [-1, -10, -1, -2, -7, -3, -4]
+    assert algotools.max_value(tab) == (-1,0)

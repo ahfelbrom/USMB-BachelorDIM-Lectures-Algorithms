@@ -1,0 +1,5 @@
+{
+  "Session1/test_S2.py::testmax_value_max_zero": true,
+  "Session1/test_S2.py::testmax_value_negative_values": true,
+  "Session1/test_S2.py::testmax_value_positive_values": true
+}

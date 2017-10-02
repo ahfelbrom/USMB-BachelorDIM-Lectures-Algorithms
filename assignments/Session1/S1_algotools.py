@@ -27,12 +27,8 @@ def average_above_zero(tableau):
         average = 0
     # return the result
     return float(average)
-"""
-tab = [-1, -5, 0, -2, -7, -3, -4]
-result = average_above_zero(tab)
-message = "The average of positives samples of {list_value} is {res}".format(list_value = tab,res = result)
-print(message)
-"""
+
+
 def max_value(table):
     ##
     # basic fnction able to return the max value of a list
@@ -51,11 +47,7 @@ def max_value(table):
             max_value = table[idx]
             max_idx = idx
     return max_value, max_idx
-""" 
-tab = [-1, 0, 1, 2, 7, 3, 4]
-result = max_value(tab)
-print(result)
-"""
+
 
 def reverse_table(table):
     ##
