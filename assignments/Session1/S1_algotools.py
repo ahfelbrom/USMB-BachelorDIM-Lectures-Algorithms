@@ -9,25 +9,29 @@ def average_above_zero(tableau):
     @param list of numbers
     @return the float representing the average of th numbers
     """
+    if tableau == []:
+        raise ValueError("le tableau est vide")
     #init critical variables    
     positive_values_sum = 0
     positive_values_count = 0
     # compute the average of positive elements of a list
     for item in tableau:
-        if(item > 0):
-            positive_values_sum += item
-            positive_values_count += 1
-        elif item == 0:
-            print("this value is null : " + str(item))
-        else:
-            print("this vale is not positive : " + str(item))
+        if isinstance(item, str):
+            raise ValueError("les valeurs ne doivent pas etre des strings")
+        else:            
+            if(item > 0):
+                positive_values_sum += item
+                positive_values_count += 1
+            elif item == 0:
+                print("this value is null : " + str(item))
+            else:
+                print("this vale is not positive : " + str(item))
     if positive_values_count != 0:
         average = float(positive_values_sum) / float(positive_values_count)
     else:
         average = 0
     # return the result
     return float(average)
-
 
 def max_value(table):
     ##

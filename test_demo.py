@@ -25,7 +25,7 @@ def test_session1script_exists():
     try:
         load_S1_script()
         assert True
-    except  ImportError,e:
+    except  ImportError:
         print('Expected script not found, carrefuly check the assignement instructions ')
         assert False
 
