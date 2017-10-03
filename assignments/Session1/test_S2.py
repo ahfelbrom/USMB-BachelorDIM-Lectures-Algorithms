@@ -19,6 +19,26 @@ def test_average_above_zero_all_under_or_equal_zero():
     tab = [-1, -5, 0, -2, -7, -3, -4]
     assert algotools.average_above_zero(tab) == 0.0
     
+def test_average_above_zero_empty_error():
+    ##
+    # function used to test the function average_above_zero
+    # this one is for the valueError empty tab
+    tab = []
+    try:
+        assert algotools.average_above_zero(tab)
+    except ValueError :
+        assert True
+    
+def test_average_above_zero_string_error():
+    ##
+    # function used to test the function average_above_zero
+    # this one is for the TypeError string tab    
+    tab = ["ab", "a", "cd"]
+    try:
+        assert algotools.average_above_zero(tab)
+    except TypeError :
+        assert True
+
 def test_max_value_positive_values():
     ##function testing the finding if the maximal value
     #for all values positives
@@ -37,6 +57,26 @@ def test_max_value_negative_values():
     tab = [-1, -10, -1, -2, -7, -3, -4]
     assert algotools.max_value(tab) == (-1,0)
     
+def test_max_value_empty_error():
+    ##
+    # function used to test the function max_value
+    # this is for ValueError empty list
+    tab = []
+    try:
+        assert algotools.max_value(tab)
+    except ValueError :
+        assert True
+    
+def test_max_value_type_error():
+    ##
+    # function used to test the function max_value
+    # this is for typeError string list
+    tab = ["ab", "a", "cd"]
+    try:
+        assert algotools.max_value(tab)
+    except TypeError :
+        assert True
+    
 def test_reverse_table_odd_list():
     ##function testing the reversion of a table list
     #with an odd list
@@ -49,6 +89,12 @@ def test_reverse_table_even_list():
     tab = [1, 2, 3, 4, 5, 6]
     assert algotools.reverse_table(tab) == [6, 5, 4, 3, 2, 1]
     
+def test_reverse_table_string_list():
+    ##function testing the reversion of a table list
+    #with string list
+    tab = ["a", "f", "t", "h"]
+    assert algotools.reverse_table(tab) == ["h", "t", "f", "a"]    
+    
 import numpy
 
 def test_roi_bbox_functionnal():
@@ -58,7 +104,15 @@ def test_roi_bbox_functionnal():
     my_mat = numpy.zeros([size_rows, size_cols])    
     my_mat[1:5,2:4] = numpy.ones([4,2])
     assert numpy.alltrue(algotools.roi_bbox(my_mat) == [[1, 2],[1, 3], [4, 2], [4, 3]])
-    
+
+def test_roi_bbox_emptyError():
+    size_rows = 7
+    size_cols = 7
+    my_mat = numpy.zeros([size_rows, size_cols])    
+    try:
+        assert numpy.alltrue(algotools.roi_bbox(my_mat) == [[1, 2],[1, 3], [4, 2], [4, 3]])
+    except Exception : 
+        assert True
 def test_random_fill_sparse_functionnal():
     ##function testing random filling of a numpy array
     #it's testing if the result_array is not empty
@@ -118,3 +172,6 @@ def test_shuffle_string_list():
     new_list = algotools.shuffle(tab)
     assert new_list != tab
 
+def test_selective_sort_functionnal():
+    tab = [10, 15, 7, 1, 3, 3, 9]
+    assert algotools.selective_sort(tab) == [1, 3, 3, 7, 9, 10, 15]

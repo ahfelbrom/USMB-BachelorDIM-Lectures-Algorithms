@@ -17,7 +17,7 @@ def average_above_zero(tableau):
     # compute the average of positive elements of a list
     for item in tableau:
         if isinstance(item, str):
-            raise ValueError("les valeurs ne doivent pas etre des strings")
+            raise TypeError("les valeurs ne doivent pas etre des strings")
         else:            
             if(item > 0):
                 positive_values_sum += item
@@ -41,12 +41,15 @@ def max_value(table):
 
     # first check if provised list is not empty
     if len(table) ==0:
-        raise ValueError('provised list is empty')
+        raise ValueError('provised list is empty')        
     # init max_value
     max_value = table[0]
     max_idx = 0
     # compute to find the max value
     for idx in range(len(table)):
+        # check for the type of elements
+        if isinstance(table[idx], str):
+                raise TypeError("les valeurs ne doivent pas etre des strings")
         if max_value < table[idx]:
             max_value = table[idx]
             max_idx = idx
@@ -80,7 +83,11 @@ def roi_bbox(image):
     #function to bound an image with a binary code
     #@param a 2D matrix to be scanned
     #output coordiates matrix
-
+    
+    # check if image has a shape
+    if numpy.alltrue(image == numpy.zeros):
+        raise Exception("votre image est noire (sans forme)")
+    
     # intitiate base values
     min_y = image.shape[0]
     max_y = 0
@@ -121,7 +128,7 @@ def random_fill_sparse(table, vfill):
     # function used to fill a numpy array randomly 
     # @param a 2D matrix to be scanned
     # @param the number of cells to be filled
-    # output the filled matrix
+    # @return output the filled matrix
     for i in range(vfill):
         randx = random.randint(0,table.shape[0] - 1)
         randy = random.randint(0, table.shape[1] - 1)
@@ -132,6 +139,10 @@ def random_fill_sparse(table, vfill):
     return table
 
 def remove_whitespace(string):
+    ##
+    # function used to remove all whitespaces of a string
+    # @param the string to analyse
+    # @return the string without whitespaces
     length = len(string)
     i = 0
     while i < length:
@@ -142,9 +153,29 @@ def remove_whitespace(string):
     return string
 
 def shuffle(list_in):
+    ##
+    # function used to shuffle the elements of an array
+    # @param the list to shuffle
+    # @return the list shuffled
     list_result = []
     while list_in != []:
         value =list_in[random.randint(0,len(list_in))-1]
         list_result.append(value)
         list_in.remove(value)
     return list_result
+
+def selective_sort(table):
+    ##
+    # function used to sort a list in selective
+    # @param the list to sort
+    # @return the list sorted
+    list_result = []    
+    while len(table) > 0:        
+        min_value = table[0]
+        for item in table:
+            if item < min_value:
+                min_value = item
+        list_result.append(min_value)
+        table.remove(min_value)
+    return list_result
+    
