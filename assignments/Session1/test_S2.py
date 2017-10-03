@@ -64,3 +64,29 @@ def test_roi_bbox_functionnal():
     myMat = numpy.zeros([size_rows, size_cols])    
     myMat[1:5,2:4] = numpy.ones([4,2])
     assert numpy.alltrue(algotools.roi_bbox(myMat) == [[1, 2],[1, 3], [4, 2], [4, 3]])
+    
+def test_random_fill_sparse_functionnal():
+    size = 5
+    myRandMat = numpy.zeros([size, size], dtype=str)
+    vfill = 10
+    assert numpy.any(algotools.random_fill_sparse(myRandMat, vfill) != [['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', '']])
+    
+def test_remove_whitespace_middle():
+    string = "Hello world"
+    assert algotools.remove_whitespace(string) == "Helloworld"
+    
+def test_remove_whitespace_middle_extremities():    
+    string = " Hello world "
+    assert algotools.remove_whitespace(string) == "Helloworld"
+
+def test_remove_whitespace_middle_left_extremity():
+    string = " Hello world"
+    assert algotools.remove_whitespace(string) == "Helloworld"
+    
+def test_remove_whitespace_middle_right_extremity():
+    string = "Hello world "
+    assert algotools.remove_whitespace(string) == "Helloworld"
+    
+def test_remove_whitespace_right_extremity():
+    string = "Helloworld "
+    assert algotools.remove_whitespace(string) == "Helloworld"

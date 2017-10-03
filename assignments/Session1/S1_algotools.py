@@ -126,14 +126,8 @@ def random_fill_sparse(table, vfill):
             randy = random.randint(0, table.shape[1] - 1)
         table[randx, randy] = 'X'
     return table
-"""
-size = 5
-myRandMat = numpy.zeros([size, size], dtype=str)
-vfill = 10
-print random_fill_sparse(myRandMat, vfill)
-"""
 
-def remove_whitepspace(string):
+def remove_whitespace(string):
     length = len(string)
     i = 0
     while i < length:
@@ -142,14 +136,6 @@ def remove_whitepspace(string):
             length -= 1
         i+= 1 
     return string
-
-"""
-string = "Hello world"
-print string + " => " + remove_whitepspace(string)
-
-string = " Hello world "
-print string + " => " + remove_whitepspace(string)
-"""
 
 def shuffle(list_in):
     list_result = []
