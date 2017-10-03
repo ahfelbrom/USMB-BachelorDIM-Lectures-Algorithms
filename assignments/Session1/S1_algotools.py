@@ -143,18 +143,8 @@ def remove_whitespace(string):
 
 def shuffle(list_in):
     list_result = []
-    for i in range(len(list_in)):
-        list_result.append(list_in[random.randint(0,len(list_in))-1])
-    print(list_result)
+    while list_in != []:
+        value =list_in[random.randint(0,len(list_in))-1]
+        list_result.append(value)
+        list_in.remove(value)
     return list_result
-
-# test with odd list
-tab = [1, 2, 3, 4, 5, 6, 7]
-newList = shuffle(tab)
-print(newList)
-
-
-# test with even list
-tab = [1, 2, 3, 4, 5, 6]
-newList = shuffle(tab)
-print(newList)

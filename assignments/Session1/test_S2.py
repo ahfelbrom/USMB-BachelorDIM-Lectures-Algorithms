@@ -59,6 +59,8 @@ def test_reverse_table_even_list():
 import numpy
 
 def test_roi_bbox_functionnal():
+    """function testing the finding of a bounding box
+    """
     size_rows = 7
     size_cols = 7
     myMat = numpy.zeros([size_rows, size_cols])    
@@ -66,27 +68,61 @@ def test_roi_bbox_functionnal():
     assert numpy.alltrue(algotools.roi_bbox(myMat) == [[1, 2],[1, 3], [4, 2], [4, 3]])
     
 def test_random_fill_sparse_functionnal():
+    """function testing random filling of a numpy array
+    it's testing if the result_array is not empty
+    """
     size = 5
     myRandMat = numpy.zeros([size, size], dtype=str)
     vfill = 10
     assert numpy.any(algotools.random_fill_sparse(myRandMat, vfill) != [['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', '']])
-    
+
 def test_remove_whitespace_middle():
+    """ function testing the removal of whitespaces in a string
+    here it tests the removal of the middle whitespace
+    """
     string = "Hello world"
     assert algotools.remove_whitespace(string) == "Helloworld"
     
-def test_remove_whitespace_middle_extremities():    
+def test_remove_whitespace_middle_extremities():
+    """ function testing the removal of whitespaces in a string
+    here it tests the removal of the middle and the extremities whitespaces    
+    """
     string = " Hello world "
     assert algotools.remove_whitespace(string) == "Helloworld"
 
 def test_remove_whitespace_middle_left_extremity():
+    """ function testing the removal of whitespaces in a string
+    here it tests the removal of the middle and the left extremity whitespaces
+    """
     string = " Hello world"
     assert algotools.remove_whitespace(string) == "Helloworld"
     
 def test_remove_whitespace_middle_right_extremity():
+    """ function testing the removal of whitespaces in a string
+    here it tests the removal of the middle and the right extremity whitespaces
+    """    
     string = "Hello world "
     assert algotools.remove_whitespace(string) == "Helloworld"
     
 def test_remove_whitespace_right_extremity():
+    """ function testing the removal of whitespaces in a string
+    here it tests the removal of the right extremity whitespace
+    """
     string = "Helloworld "
     assert algotools.remove_whitespace(string) == "Helloworld"
+
+def test_shuffle_odd_list():
+    tab = [1, 2, 3, 4, 5, 6, 7]
+    newList = algotools.shuffle(tab)
+    assert newList != tab
+
+def test_shuffle_even_list():
+    tab = [1, 2, 3, 4, 5, 6]
+    newList = algotools.shuffle(tab)
+    assert newList != tab
+
+def test_shuffle_string_list():
+    tab = ["a", "b", "c", "d", "z"]
+    newList = algotools.shuffle(tab)
+    assert newList != tab
+
