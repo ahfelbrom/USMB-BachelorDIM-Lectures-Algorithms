@@ -164,11 +164,18 @@ def shuffle(list_in):
         list_in.remove(value)
     return list_result
 
-def selective_sort(table):
+def sort_selective(table):
     ##
     # function used to sort a list in selective
     # @param the list to sort
     # @return the list sorted
+    # a) the result will be 1, 3, 3, 7, 9, 10, 15
+    # b) yes, because the loop is on the length of the table
+    # c) there are len(table) iterations
+    # d) as many as iterations
+    # e) we will need len(table) * (len(table) - 1) comparisons
+    # f) yes, it's complex
+    # g) 
     list_result = []    
     while len(table) > 0:        
         min_value = table[0]
@@ -179,3 +186,23 @@ def selective_sort(table):
         table.remove(min_value)
     return list_result
     
+def sort_bubble(pMatrix):
+    ##
+    # function used to sort a list in bubble
+    # @param the list to sort
+    # @return the list sorted
+    # a) the result will be 1, 3, 3, 7, 9, 10, 15
+    # b) yes, because the loop is on the length of the table
+    # c) we will need len(table) * len(table) iterations
+    # d) as many as iterations
+    # e) as many as iterations
+    # f) yes, it's complex
+    # g)
+    temp = 0
+    for i in range(len(pMatrix)):
+        for j in range(len(pMatrix)-1):
+            if pMatrix[j]>pMatrix[j+1]:
+                temp = pMatrix[j]
+                pMatrix[j]=pMatrix[j+1]
+                pMatrix[j+1]=temp
+    return pMatrix

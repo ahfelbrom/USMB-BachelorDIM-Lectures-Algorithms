@@ -172,6 +172,10 @@ def test_shuffle_string_list():
     new_list = algotools.shuffle(tab)
     assert new_list != tab
 
-def test_selective_sort_functionnal():
+def test_sort_selective_functionnal():
     tab = [10, 15, 7, 1, 3, 3, 9]
-    assert algotools.selective_sort(tab) == [1, 3, 3, 7, 9, 10, 15]
+    assert algotools.sort_selective(tab) == [1, 3, 3, 7, 9, 10, 15]
+    
+def test_sort_bubble_functionnal():
+    tab = [9, 2, 4, 3, 1, 5, 7, 6, 8]
+    assert algotools.sort_bubble(tab) == [1, 2, 3, 4, 5, 6, 7, 8, 9]    
