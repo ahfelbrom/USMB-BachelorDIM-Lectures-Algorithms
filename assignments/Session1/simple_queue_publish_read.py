@@ -6,39 +6,39 @@ Created on Mon Oct 16 14:25:02 2017
 """
 
 import pika
+import argparse
 
-# publish
-def publish():
-    amqp_url = 'amqp://mchgowzq:gTrpIbR5nfC3qW7YyJ1x6-hpwcFLoW7-@lark.rmq.cloudamqp.com/mchgowzq'
-    params = pika.URLParameters(amqp_url)
-    params.socket_timeout = 5
+parser = argparse.ArgumentParser(description='-read for read')
+parser.add_argument('-read',
+                    dest='reader',
+                    action='store_true',
+                    help='Activate the read mode')
+args = parser.parse_args()
+read = args.reader
+amqp_url = 'amqp://mchgowzq:gTrpIbR5nfC3qW7YyJ1x6-hpwcFLoW7-@lark.rmq.cloudamqp.com/mchgowzq'
+params = pika.URLParameters(amqp_url)
+params.socket_timeout = 5
     
-    connection = pika.BlockingConnection(params)
-    channel = connection.channel()
-    channel.queue_declare(queue = 'presentation')
-    channel.basic_publish( exchange = '',
-                           routing_key = 'presentation',
-                           body = 'Hello world ! ')
-    print('[x] Sent message :)')
-    connection.close()
+connection = pika.BlockingConnection(params)
 
-# read
-def read():
-    amqp_url = 'amqp://mchgowzq:gTrpIbR5nfC3qW7YyJ1x6-hpwcFLoW7-@lark.rmq.cloudamqp.com/mchgowzq'
-    params = pika.URLParameters(amqp_url)
-    params.socket_timeout = 5
-    
-    connection = pika.BlockingConnection(params)
-    channel = connection.channel()
-    channel.queue_declare(queue = 'presentation')
-    
-    def callback(ch, method, properties, body):
-        print("[x] received %r" % body)
-    
-    channel.basic_consume(callback,
-                          queue = 'presentation',
-                          no_ack = True)
-    
-    print('[*] Waiting for new messages. To exit, press CTRL+C')
-    channel.start_consuming()
-    
+channel = connection.channel()
+channel.queue_declare(queue='presentation')
+
+i = 0
+def callback(ch, method, properties, body):
+    global i
+    i = i+1
+    print("{0} received %r".format(i) % body)
+
+if(read):
+        channel.basic_consume(callback,
+                              queue='presentation',
+                              no_ack=True)
+        print(" [*] Waiting for messages. To exit press CTRL+C")
+        channel.start_consuming()
+else:
+   channel.basic_publish(exchange='',
+                         routing_key='presentation',
+                         body='AaAaAaAaA')
+   print(" [x] Sent 'Hello World!'")
+   connection.close()

@@ -6,6 +6,16 @@ Created on Mon Oct 16 14:11:40 2017
 """
 
 import pika
+import argparse
+import time
+
+parser = argparse.ArgumentParser(description='-concurrency to keep message')
+parser.add_argument('-concurrency',
+                    dest='reader',
+                    action='store_true',
+                    help='Activate the acknowledging')
+args = parser.parse_args()
+concurrency = args.reader
 
 amqp_url = 'amqp://mchgowzq:gTrpIbR5nfC3qW7YyJ1x6-hpwcFLoW7-@lark.rmq.cloudamqp.com/mchgowzq'
 params = pika.URLParameters(amqp_url)
@@ -19,10 +29,21 @@ def callback(ch, method, properties, body):
     global i
     i = i+1
     print("{0} received %r".format(i) % body)
+    if (concurrency):
+        channel.basic_ack(delivery_tag = method.delivery_tag)
+        time.sleep(0.01)
 
-channel.basic_consume(callback,
-                      queue = 'presentation',
-                      no_ack = True)
-
-print('[*] Waiting for new messages. To exit, press CTRL+C')
-channel.start_consuming()
+if (concurrency):
+    channel.basic_consume(callback,
+                          queue = 'presentation',
+                          no_ack = False)
+    
+    print('[*] Waiting for new messages. To exit, press CTRL+C')
+    channel.start_consuming()
+else:
+    channel.basic_consume(callback,
+                          queue = 'presentation',
+                          no_ack = True)
+    
+    print('[*] Waiting for new messages. To exit, press CTRL+C')
+    channel.start_consuming()
