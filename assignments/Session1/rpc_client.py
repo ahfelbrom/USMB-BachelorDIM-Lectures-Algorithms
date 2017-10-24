@@ -9,6 +9,9 @@ script used as a client in the cloudAMQP following the rpc method
 
 import pika
 import uuid
+import msgpack 
+import msgpack_numpy as m 
+import numpy
 
 corr_id = str(uuid.uuid4())
 
@@ -32,7 +35,8 @@ params.socket_timeout = 5
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 
-request_msg = 'Hi ! How fine ?'
+message = numpy.random.random((20,30)) 
+request_msg = msgpack.packb(message,default = m.encode) 
 
 result = channel.queue_declare(exclusive=True)
 callback_queue = result.method.queue
@@ -43,7 +47,7 @@ channel.basic_publish(exchange='',
                            properties=pika.BasicProperties(
                                  reply_to = callback_queue,
                                  correlation_id = corr_id,),
-                                 body=request_msg)
+                                 body=str(request_msg))
 print('[x] Sent message :)')
 
 # wait for requests

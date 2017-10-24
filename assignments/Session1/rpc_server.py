@@ -8,6 +8,8 @@ script used as a server in cloudAMQP following the rpc method
 """
 
 import pika
+import msgpack 
+import msgpack_numpy as m
 
 
 def coucou(request_param):
@@ -15,7 +17,8 @@ def coucou(request_param):
     # function used to process the message received
     # @param the message received
     # @return the response to be sent to the client
-    print(request_param)
+    decoded_message = msgpack.unpackb(request_param,object_hook = m.decode)    
+    print(decoded_message)
     return 'fine and you ?'
 
 def on_request(ch, method, properties, body):
