@@ -3,6 +3,8 @@
 Created on Mon Oct 16 14:25:02 2017
 
 @author: bouleta
+
+script used to publish / read in clouamqp following the command we use
 """
 
 import pika
@@ -26,6 +28,12 @@ channel.queue_declare(queue='presentation')
 
 i = 0
 def callback(ch, method, properties, body):
+    ##
+    # Function used for the callback of the read method 
+    # @param the chanel
+    # @param the method used
+    # @param the properties sent
+    # @param the body of the message in queue
     global i
     i = i+1
     print("{0} received %r".format(i) % body)

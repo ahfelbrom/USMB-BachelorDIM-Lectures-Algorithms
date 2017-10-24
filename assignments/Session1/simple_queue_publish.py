@@ -3,6 +3,8 @@
 Created on Mon Oct 16 14:11:16 2017
 
 @author: bouleta
+
+script used to publish a message in cloudAMQP
 """
 
 import pika

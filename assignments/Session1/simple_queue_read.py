@@ -3,6 +3,10 @@
 Created on Mon Oct 16 14:11:40 2017
 
 @author: bouleta
+
+script used to make them laugth (copyright singing in the rain)
+
+Really used to read simple messages in the queue of could amqp
 """
 
 import pika
@@ -23,9 +27,15 @@ params.socket_timeout = 5
 
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
-channel.queue_declare(queue = 'presentation')
+channel.queue_declare(queue = 'rpc_queue')
 i = 0
 def callback(ch, method, properties, body):
+    ##
+    # Function used for the callback of the read method 
+    # @param the chanel
+    # @param the method used
+    # @param the properties sent
+    # @param the body of the message in queue
     global i
     i = i+1
     print("{0} received %r".format(i) % body)
@@ -35,14 +45,14 @@ def callback(ch, method, properties, body):
 
 if (concurrency):
     channel.basic_consume(callback,
-                          queue = 'presentation',
+                          queue = 'rpc_queue',
                           no_ack = False)
     
     print('[*] Waiting for new messages. To exit, press CTRL+C')
     channel.start_consuming()
 else:
     channel.basic_consume(callback,
-                          queue = 'presentation',
+                          queue = 'rpc_queue',
                           no_ack = True)
     
     print('[*] Waiting for new messages. To exit, press CTRL+C')
